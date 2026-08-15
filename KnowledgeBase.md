@@ -1,14 +1,14 @@
 # PROJECT_IDENTITY
 
 ## Purpose
-Serves as a minimal dummy/testing repository used for demonstration, testing, or basic documentation experiments [INFERRED].
+Serves as a minimal repository for testing, demonstrating, and evaluating basic command-line interactions, Python scripts, and documentation changes [INFERRED].
 
 ## Core Features
-- Basic project documentation via Markdown (`README.md`).
-- Sequential text entries (`test1`, `tets2`, `tets3`).
+- Command-line user interaction for age eligibility verification (`main.py`).
+- Repository documentation and test tracking (`README.md`).
 
 ## Users
-- Developers and automated testing systems interacting with repository changes [INFERRED].
+- Developers and automated code review systems [INFERRED].
 
 ---
 
@@ -18,7 +18,7 @@ Serves as a minimal dummy/testing repository used for demonstration, testing, or
 - None [INFERRED]
 
 ## Backend
-- None [INFERRED]
+- Python 3 [INFERRED]
 
 ## Database
 - None [INFERRED]
@@ -37,19 +37,24 @@ Serves as a minimal dummy/testing repository used for demonstration, testing, or
 # ARCHITECTURE
 
 ## High Level Design
-Static, file-based single-repository architecture containing markdown documentation files.
+Flat repository layout containing simple executable Python scripts (`main.py`) and static project documentation (`README.md`).
 
 ## Request Flow
-N/A (Static repository content) [INFERRED].
+1. Script execution (`main.py`) starts from terminal.
+2. System displays initial output message (`Hello world`).
+3. System prompts user for age input (`enter age:`).
+4. System processes input and evaluates against banking age eligibility rules.
+5. Resulting eligibility message is printed to console.
 
 ## Data Flow
-N/A (Static repository content) [INFERRED].
+User Input (Terminal) -> Console Input Read -> Variable Assignment/Conversion -> Condition Assessment -> Console Output [INFERRED].
 
 ## Important Modules
-- **Documentation Module**: Represents root markdown files (`README.md`).
+- **`main.py`**: CLI script executing banking age eligibility logic.
+- **`README.md`**: Document holding repository metadata and status content.
 
 ## System Boundaries
-- Local file system and Git repository boundaries.
+Local Python runtime environment and Git version control system.
 
 ---
 
@@ -57,15 +62,16 @@ N/A (Static repository content) [INFERRED].
 
 ```
 .
-└── README.md
+├── README.md
+└── main.py
 ```
 
 ### Directory Details
 
 #### `.` (Root Directory)
-- **Purpose**: Main repository container for project configuration and documentation.
-- **Responsibilities**: Stores core project text files and settings.
-- **Dependencies**: None.
+- **Purpose**: Main repository container holding documentation and script files.
+- **Responsibilities**: Houses entry-point scripts (`main.py`) and documentation (`README.md`).
+- **Dependencies**: Python standard library [INFERRED].
 
 ---
 
@@ -73,97 +79,114 @@ N/A (Static repository content) [INFERRED].
 
 ## Entities
 
+### `Banking Applicant / User`
+- **Purpose**: Subject whose age is verified to determine banking service eligibility.
+- **Relationships**: Evaluated against banking age threshold criteria (`age > 18`) [INFERRED].
+
 ### `README Document`
-- **Purpose**: Holds project metadata, status, and test strings (`dummy`, `test1`, `tets2`, `tets3`).
+- **Purpose**: Holds project documentation and text change history.
 - **Relationships**: None [INFERRED].
 
 ---
 
 # BUSINESS_RULES
 
-- Document updates append sequential test or status indicators (e.g., `test1`, `tets2`, `tets3`) [INFERRED].
-- PR metadata (title and description) must accurately match the target file and content appended in the diff [INFERRED].
+- A user must be greater than 18 years old to be eligible for banking services [INFERRED].
+- PR titles and descriptions must accurately describe the intended code changes, target files, and logical outcomes [INFERRED].
+- Code changes must fulfill user intent specified in PR descriptions without introduces logic inversions or typos [INFERRED].
 
 ---
 
 # CODING_CONVENTIONS
 
 ## Naming Patterns
-- Standard upper-case markdown naming for main documentation (`README.md`).
+- Python standard `snake_case` for variables and script files [INFERRED].
+- Upper-case naming for markdown documentation (`README.md`).
 
 ## File Organization
-- Flat repository layout with root-level documentation files.
+- Flat root-level file structure.
 
 ## Error Handling
-- N/A [INFERRED]
+- Console inputs must be properly assigned and converted before evaluation to avoid runtime crashes [INFERRED].
 
 ## State Management
-- N/A [INFERRED]
+- Local in-memory script execution variables [INFERRED].
 
 ## Database Access Patterns
-- N/A [INFERRED]
+- None [INFERRED]
 
 ## API Design Patterns
-- N/A [INFERRED]
+- None [INFERRED]
 
 ## Security Patterns
-- Plaintext repository data; ensure sensitive keys or confidential operational info are excluded [INFERRED].
+- Input validation and type casting (converting string inputs to integers) before processing logic [INFERRED].
 
 ---
 
 # REVIEW_GUIDELINES
 
 ## Expected Architectural Patterns
-- Clean, plain text additions following pre-existing file formatting.
+- Direct, functional procedural execution for CLI scripts.
+- Explicit variable binding for user inputs (`age = int(input(...))`) [INFERRED].
 
 ## Anti-Patterns
-- **Mismatched PR Metadata**: Diff targets a different file (`README.md`) than described in PR title (`README3`).
-- **Typographical Discrepancies**: Inconsistency between description (`test3`) and line addition (`tets3`).
+- **Unassigned Inputs**: Invoking `input()` without capturing the return value in a variable.
+- **Undefined Variable References**: Using variables in conditions (e.g., `age`) that were never declared or assigned.
+- **Inverted Logic Conditions**: Using `<` operators when business requirements specify `>` or `>=`.
+- **Typographical Errors**: Misspelling key output terms or descriptions (e.g., `baking` instead of `banking`, `elegble` instead of `eligible`, `grater` instead of `greater`).
+- **PR Metadata Discrepancy**: PR descriptions describing logic ("check if age greater than 18") that directly contradicts the diff code (`if age < 18`).
 
 ## Performance Concerns
-- Minimal / None.
+- Minimal due to lightweight script execution context.
 
 ## Security Concerns
-- Prevent committing secrets or sensitive environment configuration to public documentation files.
+- Missing type validation on user input leading to unhandled exceptions (`ValueError` on string input).
 
 ## Maintainability Concerns
-- Check spelling consistency across documentation entries.
+- Lack of error handling and unit tests for input validation.
 
 ---
 
 # CRITICAL_FILES
 
+### `main.py`
+- **Responsibility**: Script containing user input collection and age eligibility logic.
+- **Why changes are risky**: Missing variable initialization, improper type conversion, or inverted conditions break core application behavior and business requirements.
+
 ### `README.md`
-- **Responsibility**: Primary entry point and documentation source for the repository.
-- **Why changes are risky**: Changes affect project visibility and risk introducing typographical errors or unaligned change metadata.
+- **Responsibility**: Core repository documentation.
+- **Why changes are risky**: Unaligned edits cause documentation degradation.
 
 ---
 
 # KNOWN_RISKS
 
-- **Metadata Misalignment Risk**: PR titles/descriptions may contradict actual code changes (e.g., PR title references `README3` and description says `test3`, while diff modifies `README.md` with `tets3`) [INFERRED].
-- **Lack of Tooling**: No automated markdown linting or spellchecking detected, increasing the likelihood of unchecked typos [INFERRED].
+- **Runtime `NameError`**: Referencing `age` without assigning the output of `input()` causes runtime execution failure [INFERRED].
+- **Type Mismatch Error**: Comparing string output from `input()` directly against integer `18` causes `TypeError` [INFERRED].
+- **Business Logic Inversion**: Inverted relational operator (`<` vs `>`) yields wrong eligibility decisions [INFERRED].
+- **Textual Inconsistencies**: Spelled outputs (`baking` vs `banking`) misrepresent intent [INFERRED].
 
 ---
 
 # FUTURE_IMPROVEMENTS
 
-- Implement a Markdown linter (e.g., `markdownlint`) and spellchecker as a CI step [INFERRED].
-- Enforce PR validation checks to align PR descriptions with diff content [INFERRED].
+- Convert console input explicitly to integer with `try/except` error handling [INFERRED].
+- Add automated Python linting (`flake8` / `black`) and static analysis checks [INFERRED].
+- Add unit tests verifying eligibility conditions [INFERRED].
 
 ---
 
 # AI_REVIEW_CONTEXT
 
 ## Architectural Intent
-Simple static content repository used to evaluate version control changes and file updates.
+Simple CLI program that collects user input and executes basic conditional business logic.
 
 ## Business Intent
-Maintain simple text/test entries in documentation files.
+Determine banking service eligibility based on user age (> 18).
 
 ## Important Constraints
-- Pay close attention to discrepancies between PR titles/descriptions and actual diffs.
-- Flag typographical issues (e.g., `tets3` vs `test3`) when the description indicates a specific intended spelling.
+- Input from `input()` must be assigned to a variable and cast to an integer before conditional comparisons.
+- Printed string outputs must match exact domain vocabulary (`banking`, `eligible`).
 
 ## Non-Obvious Decisions
-- The repository relies entirely on manual review for documentation accuracy as no automated validation scripts are defined.
+- The reviewer must strictly cross-check the PR description against the diff logic to catch inverse conditions (`< 18` vs `> 18`), missing variable assignments, and spelling mistakes.
