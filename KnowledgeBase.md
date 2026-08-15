@@ -8,7 +8,7 @@ Serves as a minimal repository for testing, demonstrating, and evaluating basic 
 - Repository documentation and test tracking (`README.md`).
 
 ## Users
-- Developers and automated code review systems [INFERRED].
+- Developers and automated code review or testing systems [INFERRED].
 
 ---
 
@@ -37,7 +37,7 @@ Serves as a minimal repository for testing, demonstrating, and evaluating basic 
 # ARCHITECTURE
 
 ## High Level Design
-Flat repository layout containing simple executable Python scripts (`main.py`) and static project documentation (`README.md`).
+Flat repository layout containing simple executable Python CLI scripts (`main.py`) and static project documentation (`README.md`).
 
 ## Request Flow
 1. Script execution (`main.py`) starts from terminal.
@@ -91,9 +91,9 @@ Local Python runtime environment and Git version control system.
 
 # BUSINESS_RULES
 
-- A user must be greater than 18 years old to be eligible for banking services [INFERRED].
+- A user must be greater than 18 years old to be eligible for banking services (`age > 18`) [INFERRED].
 - PR titles and descriptions must accurately describe the intended code changes, target files, and logical outcomes [INFERRED].
-- Code changes must fulfill user intent specified in PR descriptions without introduces logic inversions or typos [INFERRED].
+- Code logic must strictly fulfill user intent specified in PR descriptions without introducing logic inversions, missing branches, or typos [INFERRED].
 
 ---
 
@@ -107,7 +107,7 @@ Local Python runtime environment and Git version control system.
 - Flat root-level file structure.
 
 ## Error Handling
-- Console inputs must be properly assigned and converted before evaluation to avoid runtime crashes [INFERRED].
+- Console inputs must be assigned to variables and converted to integers (`int()`) with proper validation to prevent runtime errors [INFERRED].
 
 ## State Management
 - Local in-memory script execution variables [INFERRED].
@@ -119,7 +119,7 @@ Local Python runtime environment and Git version control system.
 - None [INFERRED]
 
 ## Security Patterns
-- Input validation and type casting (converting string inputs to integers) before processing logic [INFERRED].
+- Input validation and type casting before processing business logic [INFERRED].
 
 ---
 
@@ -131,19 +131,21 @@ Local Python runtime environment and Git version control system.
 
 ## Anti-Patterns
 - **Unassigned Inputs**: Invoking `input()` without capturing the return value in a variable.
-- **Undefined Variable References**: Using variables in conditions (e.g., `age`) that were never declared or assigned.
+- **Undefined Variable References**: Referencing variables in conditions (e.g., `age`) that were never declared or assigned (causes `NameError`).
+- **Type Mismatch Comparisons**: Comparing string input directly against integers (causes `TypeError`).
 - **Inverted Logic Conditions**: Using `<` operators when business requirements specify `>` or `>=`.
-- **Typographical Errors**: Misspelling key output terms or descriptions (e.g., `baking` instead of `banking`, `elegble` instead of `eligible`, `grater` instead of `greater`).
-- **PR Metadata Discrepancy**: PR descriptions describing logic ("check if age greater than 18") that directly contradicts the diff code (`if age < 18`).
+- **Typographical Errors**: Misspelling domain terms or PR descriptions (e.g., `baking` instead of `banking`, `elegble` instead of `eligible`, `grater` instead of `greater`).
+- **PR Metadata & Code Discrepancy**: PR descriptions stating logic ("check if age greater than 18") that directly contradicts the diff implementation (`if age < 18`).
+- **Incomplete Logical Branches**: Missing `else` statements when the PR description explicitly requires handling negative conditions ("else not").
 
 ## Performance Concerns
 - Minimal due to lightweight script execution context.
 
 ## Security Concerns
-- Missing type validation on user input leading to unhandled exceptions (`ValueError` on string input).
+- Missing type validation on user input leading to unhandled exceptions (`ValueError` on non-numeric input).
 
 ## Maintainability Concerns
-- Lack of error handling and unit tests for input validation.
+- Lack of error handling, static analysis/linting, and unit tests for input validation.
 
 ---
 
@@ -151,7 +153,7 @@ Local Python runtime environment and Git version control system.
 
 ### `main.py`
 - **Responsibility**: Script containing user input collection and age eligibility logic.
-- **Why changes are risky**: Missing variable initialization, improper type conversion, or inverted conditions break core application behavior and business requirements.
+- **Why changes are risky**: Missing variable initialization, improper type conversion, or inverted conditions break core application execution and business requirements.
 
 ### `README.md`
 - **Responsibility**: Core repository documentation.
@@ -162,17 +164,19 @@ Local Python runtime environment and Git version control system.
 # KNOWN_RISKS
 
 - **Runtime `NameError`**: Referencing `age` without assigning the output of `input()` causes runtime execution failure [INFERRED].
-- **Type Mismatch Error**: Comparing string output from `input()` directly against integer `18` causes `TypeError` [INFERRED].
-- **Business Logic Inversion**: Inverted relational operator (`<` vs `>`) yields wrong eligibility decisions [INFERRED].
-- **Textual Inconsistencies**: Spelled outputs (`baking` vs `banking`) misrepresent intent [INFERRED].
+- **Runtime `TypeError`**: Comparing string output from `input()` directly against integer `18` causes `TypeError` [INFERRED].
+- **Business Logic Inversion**: Inverted relational operators (`<` vs `>`) yield incorrect eligibility decisions [INFERRED].
+- **Textual Inconsistencies**: Spelled outputs (`baking` vs `banking`, `elegble` vs `eligible`) misrepresent intent and domain language [INFERRED].
+- **Lack of Tooling**: No static analyzers, linters, or CI checks are configured to catch syntax errors or typos automatically [INFERRED].
 
 ---
 
 # FUTURE_IMPROVEMENTS
 
 - Convert console input explicitly to integer with `try/except` error handling [INFERRED].
-- Add automated Python linting (`flake8` / `black`) and static analysis checks [INFERRED].
-- Add unit tests verifying eligibility conditions [INFERRED].
+- Implement complete conditional paths (`if`/`else`) to handle both eligible and ineligible user inputs [INFERRED].
+- Add automated Python linting (`flake8` / `black` / `pylint`) and static analysis checks [INFERRED].
+- Add unit tests verifying eligibility condition logic [INFERRED].
 
 ---
 
@@ -189,4 +193,4 @@ Determine banking service eligibility based on user age (> 18).
 - Printed string outputs must match exact domain vocabulary (`banking`, `eligible`).
 
 ## Non-Obvious Decisions
-- The reviewer must strictly cross-check the PR description against the diff logic to catch inverse conditions (`< 18` vs `> 18`), missing variable assignments, and spelling mistakes.
+- AI reviewers must strictly cross-check PR title and description against diff logic to catch inverse conditions (`< 18` vs `> 18`), missing variable assignments, missing `else` branches, and spelling errors.
