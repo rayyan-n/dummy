@@ -1,14 +1,14 @@
 # PROJECT_IDENTITY
 
 ## Purpose
-Serves as a minimal repository for testing, demonstrating, and evaluating basic command-line interactions, Python scripts, and documentation changes [INFERRED].
+Serves as a minimal repository used for testing, demonstrating, and evaluating command-line Python scripts and project documentation review workflows [INFERRED].
 
 ## Core Features
 - Command-line user interaction for age eligibility verification (`main.py`).
-- Repository documentation and test tracking (`README.md`).
+- Repository documentation and long-term project memory (`README.md`, `KnowledgeBase.md`).
 
 ## Users
-- Developers and automated code review or testing systems [INFERRED].
+- Developers and automated code review systems [INFERRED].
 
 ---
 
@@ -18,7 +18,7 @@ Serves as a minimal repository for testing, demonstrating, and evaluating basic 
 - None [INFERRED]
 
 ## Backend
-- Python 3 [INFERRED]
+- Python 3 [FACT]
 
 ## Database
 - None [INFERRED]
@@ -27,7 +27,7 @@ Serves as a minimal repository for testing, demonstrating, and evaluating basic 
 - None [INFERRED]
 
 ## Infrastructure
-- Git version control.
+- Git version control [FACT]
 
 ## External Services
 - None [INFERRED]
@@ -37,24 +37,25 @@ Serves as a minimal repository for testing, demonstrating, and evaluating basic 
 # ARCHITECTURE
 
 ## High Level Design
-Flat repository layout containing simple executable Python CLI scripts (`main.py`) and static project documentation (`README.md`).
+Flat repository structure containing executable Python CLI scripts (`main.py`) and markdown documentation files (`README.md`, `KnowledgeBase.md`).
 
 ## Request Flow
-1. Script execution (`main.py`) starts from terminal.
-2. System displays initial output message (`Hello world`).
-3. System prompts user for age input (`enter age:`).
-4. System processes input and evaluates against banking age eligibility rules.
-5. Resulting eligibility message is printed to console.
+1. User executes script (`main.py`) from console.
+2. Script prints greeting message (`Hello world`).
+3. System prompts user for age input (`input("enter age:")`).
+4. System attempts evaluation against age criteria.
+5. Resulting status message is printed to console.
 
 ## Data Flow
-User Input (Terminal) -> Console Input Read -> Variable Assignment/Conversion -> Condition Assessment -> Console Output [INFERRED].
+User Terminal Input -> `input()` String -> Variable `age` -> Relational Comparison (`age < 18`) -> Console Output [FACT].
 
 ## Important Modules
-- **`main.py`**: CLI script executing banking age eligibility logic.
-- **`README.md`**: Document holding repository metadata and status content.
+- **`main.py`**: Command-line interface entry point containing execution logic.
+- **`KnowledgeBase.md`**: Project memory and AI review guidelines.
+- **`README.md`**: General project documentation.
 
 ## System Boundaries
-Local Python runtime environment and Git version control system.
+Local Python runtime environment and Git filesystem boundaries [INFERRED].
 
 ---
 
@@ -62,6 +63,7 @@ Local Python runtime environment and Git version control system.
 
 ```
 .
+├── KnowledgeBase.md
 ├── README.md
 └── main.py
 ```
@@ -69,9 +71,9 @@ Local Python runtime environment and Git version control system.
 ### Directory Details
 
 #### `.` (Root Directory)
-- **Purpose**: Main repository container holding documentation and script files.
-- **Responsibilities**: Houses entry-point scripts (`main.py`) and documentation (`README.md`).
-- **Dependencies**: Python standard library [INFERRED].
+- **Purpose**: Main repository root holding source scripts and documentation.
+- **Responsibilities**: Stores script entry points (`main.py`) and knowledge base documents (`KnowledgeBase.md`, `README.md`).
+- **Dependencies**: Python 3 standard library [INFERRED].
 
 ---
 
@@ -80,37 +82,38 @@ Local Python runtime environment and Git version control system.
 ## Entities
 
 ### `Banking Applicant / User`
-- **Purpose**: Subject whose age is verified to determine banking service eligibility.
-- **Relationships**: Evaluated against banking age threshold criteria (`age > 18`) [INFERRED].
+- **Purpose**: Individual whose age is checked to determine eligibility for banking services.
+- **Relationships**: Checked by conditional logic in `main.py` [INFERRED].
 
-### `README Document`
-- **Purpose**: Holds project documentation and text change history.
-- **Relationships**: None [INFERRED].
+### `Knowledge Base / Documentation`
+- **Purpose**: Captures architectural constraints, domain rules, and guidelines for AI automated reviews.
+- **Relationships**: Consumed by automated PR review systems.
 
 ---
 
 # BUSINESS_RULES
 
-- A user must be greater than 18 years old to be eligible for banking services (`age > 18`) [INFERRED].
-- PR titles and descriptions must accurately describe the intended code changes, target files, and logical outcomes [INFERRED].
-- Code logic must strictly fulfill user intent specified in PR descriptions without introducing logic inversions, missing branches, or typos [INFERRED].
+- Users must meet the age threshold (typically age > 18 or >= 18) to be eligible for banking services [INFERRED].
+- [FACT] `main.py` currently checks `age < 18` for `"elegble for baking"`, which contradicts the intended business rule (Logic Inversion) [INFERRED].
+- User console inputs must be converted to numeric integers (`int()`) before performing relational logic comparisons [INFERRED].
+- PR metadata (title and description) must accurately reflect the code diff and logical outcomes [INFERRED].
 
 ---
 
 # CODING_CONVENTIONS
 
 ## Naming Patterns
-- Python standard `snake_case` for variables and script files [INFERRED].
-- Upper-case naming for markdown documentation (`README.md`).
+- Standard Python `snake_case` for variables and scripts (`age`, `main.py`).
+- UPPERCASE / CamelCase for markdown files (`README.md`, `KnowledgeBase.md`).
 
 ## File Organization
-- Flat root-level file structure.
+- Flat root repository layout.
 
 ## Error Handling
-- Console inputs must be assigned to variables and converted to integers (`int()`) with proper validation to prevent runtime errors [INFERRED].
+- Console input reading should wrap integer casting (`int()`) in exception handling (`try...except ValueError`) to handle invalid non-numeric inputs [INFERRED].
 
 ## State Management
-- Local in-memory script execution variables [INFERRED].
+- In-memory execution variables within local script scope [FACT].
 
 ## Database Access Patterns
 - None [INFERRED]
@@ -119,78 +122,75 @@ Local Python runtime environment and Git version control system.
 - None [INFERRED]
 
 ## Security Patterns
-- Input validation and type casting before processing business logic [INFERRED].
+- Input validation and type casting prior to conditional checks [INFERRED].
 
 ---
 
 # REVIEW_GUIDELINES
 
 ## Expected Architectural Patterns
-- Direct, functional procedural execution for CLI scripts.
-- Explicit variable binding for user inputs (`age = int(input(...))`) [INFERRED].
+- Executable procedural scripts using clean control flow and explicit variable casting.
 
 ## Anti-Patterns
-- **Unassigned Inputs**: Invoking `input()` without capturing the return value in a variable.
-- **Undefined Variable References**: Referencing variables in conditions (e.g., `age`) that were never declared or assigned (causes `NameError`).
-- **Type Mismatch Comparisons**: Comparing string input directly against integers (causes `TypeError`).
-- **Inverted Logic Conditions**: Using `<` operators when business requirements specify `>` or `>=`.
-- **Typographical Errors**: Misspelling domain terms or PR descriptions (e.g., `baking` instead of `banking`, `elegble` instead of `eligible`, `grater` instead of `greater`).
-- **PR Metadata & Code Discrepancy**: PR descriptions stating logic ("check if age greater than 18") that directly contradicts the diff implementation (`if age < 18`).
-- **Incomplete Logical Branches**: Missing `else` statements when the PR description explicitly requires handling negative conditions ("else not").
+- **Uncast String Comparisons**: Comparing raw `input()` strings directly to integer literals (`age < 18`), which causes a runtime `TypeError` in Python 3 [FACT].
+- **Inverted Logic Conditions**: Checking `< 18` when business intent specifies eligibility for age over 18 [INFERRED].
+- **Typographical Errors**: Spelling mistakes in string output (e.g., `"elegble for baking"` instead of `"eligible for banking"`) [FACT].
+- **PR Intent Discrepancy**: PR description claims `fixed age var` while leaving underlying type error and logic bugs in place [FACT].
+- **Missing Conditional Branches**: Omitting `else` blocks when handling binary eligibility outcomes [INFERRED].
 
 ## Performance Concerns
-- Minimal due to lightweight script execution context.
+- Minimal; lightweight CLI execution.
 
 ## Security Concerns
-- Missing type validation on user input leading to unhandled exceptions (`ValueError` on non-numeric input).
+- Missing type and input bounds validation causing unhandled runtime exceptions (`TypeError`, `ValueError`).
 
 ## Maintainability Concerns
-- Lack of error handling, static analysis/linting, and unit tests for input validation.
+- Lack of static analysis (linting/type checking) and unit tests for script logic.
 
 ---
 
 # CRITICAL_FILES
 
 ### `main.py`
-- **Responsibility**: Script containing user input collection and age eligibility logic.
-- **Why changes are risky**: Missing variable initialization, improper type conversion, or inverted conditions break core application execution and business requirements.
+- **Responsibility**: Primary executable entry point containing age evaluation logic.
+- **Why changes are risky**: Changes affect user interaction and runtime stability; uncast inputs or inverted operators cause immediate script failure or incorrect business decisions [FACT].
 
-### `README.md`
-- **Responsibility**: Core repository documentation.
-- **Why changes are risky**: Unaligned edits cause documentation degradation.
+### `KnowledgeBase.md`
+- **Responsibility**: Authoritative architectural memory for automated code reviews.
+- **Why changes are risky**: Incorrect or stale entries lead AI reviewers to misinterpret repository rules and PR intent [INFERRED].
 
 ---
 
 # KNOWN_RISKS
 
-- **Runtime `NameError`**: Referencing `age` without assigning the output of `input()` causes runtime execution failure [INFERRED].
-- **Runtime `TypeError`**: Comparing string output from `input()` directly against integer `18` causes `TypeError` [INFERRED].
-- **Business Logic Inversion**: Inverted relational operators (`<` vs `>`) yield incorrect eligibility decisions [INFERRED].
-- **Textual Inconsistencies**: Spelled outputs (`baking` vs `banking`, `elegble` vs `eligible`) misrepresent intent and domain language [INFERRED].
-- **Lack of Tooling**: No static analyzers, linters, or CI checks are configured to catch syntax errors or typos automatically [INFERRED].
+- **Runtime `TypeError`**: [FACT] In `main.py`, `age` is assigned from `input()`, returning a string. Executing `age < 18` raises `TypeError: '<' not supported between instances of 'str' and 'int'`.
+- **Domain Spelling Bugs**: [FACT] Console output prints `"elegble for baking"` instead of `"eligible for banking"`.
+- **Logic Inversion**: [FACT] Script tests `age < 18` for positive eligibility, reversing intended domain rules.
+- **No Automated CI Checks**: Lack of linting or unit testing allows runtime bugs to be merged without automated friction [INFERRED].
 
 ---
 
 # FUTURE_IMPROVEMENTS
 
-- Convert console input explicitly to integer with `try/except` error handling [INFERRED].
-- Implement complete conditional paths (`if`/`else`) to handle both eligible and ineligible user inputs [INFERRED].
-- Add automated Python linting (`flake8` / `black` / `pylint`) and static analysis checks [INFERRED].
-- Add unit tests verifying eligibility condition logic [INFERRED].
+- Convert `input()` explicitly to integer with `int(input(...))` inside a `try/except ValueError` block [INFERRED].
+- Correct condition to `if age >= 18:` (or `if age > 18:`) [INFERRED].
+- Fix output text typos to `"eligible for banking"` [INFERRED].
+- Add an `else:` branch to notify ineligible users [INFERRED].
+- Integrate automated testing (`pytest`) and static analysis (`flake8`, `mypy`) into PR workflows [INFERRED].
 
 ---
 
 # AI_REVIEW_CONTEXT
 
 ## Architectural Intent
-Simple CLI program that collects user input and executes basic conditional business logic.
+Simple command-line interface validating user input against domain eligibility conditions.
 
 ## Business Intent
-Determine banking service eligibility based on user age (> 18).
+Verify if a user meets the age requirement (> 18) for banking services.
 
 ## Important Constraints
-- Input from `input()` must be assigned to a variable and cast to an integer before conditional comparisons.
-- Printed string outputs must match exact domain vocabulary (`banking`, `eligible`).
+- `input()` in Python 3 returns `str`; it must be explicitly cast to `int` before comparing with numbers [FACT].
+- Output text must accurately spell domain terminology (`eligible`, `banking`) [INFERRED].
 
 ## Non-Obvious Decisions
-- AI reviewers must strictly cross-check PR title and description against diff logic to catch inverse conditions (`< 18` vs `> 18`), missing variable assignments, missing `else` branches, and spelling errors.
+- PR titles and descriptions must be cross-checked against actual code execution paths to ensure that claims like "fixed age var" actually resolve type mismatch errors and logical inversions [INFERRED].
