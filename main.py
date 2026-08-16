@@ -1,4 +1,4 @@
 print("Hello world")
-input("enter age:")
+age = input("enter age:")
 if age < 18:
   print("elegble for baking")
