@@ -4,8 +4,8 @@
 Serves as a minimal dummy repository created to test and verify whether a Python project can be tracked and evaluated by automated AI code review tools [FACT].
 
 ## Core Features
-- CLI application script that accepts user age input and evaluates age eligibility (`main.py`) [FACT].
-- Project memory and documentation files (`KnowledgeBase.md`, `README.md`) [FACT].
+- CLI application script that prompts for user age input and evaluates eligibility logic (`main.py`) [FACT].
+- Documentation and AI review knowledge memory (`KnowledgeBase.md`, `README.md`) [FACT].
 
 ## Users
 - Developers and automated review engines testing tracking mechanisms and code analysis workflows [INFERRED].
@@ -37,25 +37,25 @@ Serves as a minimal dummy repository created to test and verify whether a Python
 # ARCHITECTURE
 
 ## High Level Design
-Flat single-repository architecture containing an executable Python CLI entry point (`main.py`) alongside project documentation and living knowledge base files (`KnowledgeBase.md`, `README.md`) [FACT].
+Flat single-repository architecture containing an executable Python CLI script (`main.py`) alongside project documentation and living knowledge base files (`KnowledgeBase.md`, `README.md`) [FACT].
 
 ## Request Flow
 1. User executes `main.py` via CLI [FACT].
 2. Application prints `"Hello world"` to standard output (`stdout`) [FACT].
 3. Application prompts user with `"enter age:"` via standard input (`stdin`) [FACT].
-4. Application attempts conditional evaluation (`age < 18`) on the received string variable [FACT].
+4. Application attempts conditional evaluation (`if age < 18:`) on the uncast string variable [FACT].
 5. Application prints `"elegble for baking"` to `stdout` if evaluation succeeds [FACT].
 
 ## Data Flow
 Standard Input (`stdin`) -> Variable `age` (`str`) -> Relational Expression (`age < 18`) -> Standard Output (`stdout`) [FACT].
 
 ## Important Modules
-- `main.py`: Executable script handling CLI interaction and eligibility logic [FACT].
+- `main.py`: Executable CLI script handling prompt and conditional evaluation logic [FACT].
 - `KnowledgeBase.md`: Authoritative architectural context and business rules for AI reviewers [FACT].
 - `README.md`: Basic repository description file [FACT].
 
 ## System Boundaries
-- Confined to the local CLI process runtime and local file system [INFERRED].
+- Confined to the local CLI process runtime and file system [INFERRED].
 
 ---
 
@@ -71,8 +71,8 @@ Standard Input (`stdin`) -> Variable `age` (`str`) -> Relational Expression (`ag
 ### Directory Details
 
 #### `.` (Root Directory)
-- **Purpose**: Root directory containing executable code and project memory [FACT].
-- **Responsibilities**: Houses project documentation, AI knowledge base, and application entry points [FACT].
+- **Purpose**: Main repository container for application code, configuration, and documentation [FACT].
+- **Responsibilities**: Houses execution entry point (`main.py`), basic metadata (`README.md`), and automated review context (`KnowledgeBase.md`) [FACT].
 - **Dependencies**: Python 3 standard library [INFERRED].
 
 ---
@@ -82,37 +82,37 @@ Standard Input (`stdin`) -> Variable `age` (`str`) -> Relational Expression (`ag
 ## Entities
 
 ### `User / Applicant`
-- **Purpose**: Entity providing input data (`age`) to verify criteria eligibility [INFERRED].
-- **Relationships**: Processed in `main.py` [FACT].
+- **Purpose**: Entity providing input data (`age`) to evaluate criteria eligibility [INFERRED].
+- **Relationships**: Processed directly inside `main.py` [FACT].
 
 ### `Knowledge Base`
-- **Purpose**: Maintains living architectural context, rules, and review guidelines for automated reviewers [FACT].
-- **Relationships**: Read by AI review tools to evaluate PR diffs against project goals [INFERRED].
+- **Purpose**: Maintains living architectural context, rules, and review guidelines for automated code review systems [FACT].
+- **Relationships**: Read by AI review tools to evaluate pull requests against project goals [INFERRED].
 
 ---
 
 # BUSINESS_RULES
 
-- **Tracking Objective**: Repository acts as a dummy testbed for tracking Python projects [FACT].
-- **Type Safety on Input**: Interactive inputs must be cast to numeric types prior to numerical comparisons [INFERRED].
-- **PR Description Accuracy**: PR descriptions ("fixed age var") must accurately match code changes supplied in the PR diff [INFERRED].
+- **Tracking Objective**: Repository serves as a dummy codebase specifically to verify Python project tracking capabilities [FACT].
+- **Type Safety on Input**: Interactive inputs representing numerical values must be cast to numeric types before relational operations are executed [INFERRED].
+- **PR Description Accuracy**: PR descriptions (e.g., "fixed age var") must accurately match the actual functional code changes in the PR diff [INFERRED].
 
 ---
 
 # CODING_CONVENTIONS
 
 ## Naming Patterns
-- Standard Python `snake_case` for variables and source filenames (`age`, `main.py`) [FACT].
-- Capitalized / PascalCase naming for documentation files (`README.md`, `KnowledgeBase.md`) [FACT].
+- Standard Python `snake_case` for local variables and source filenames (`age`, `main.py`) [FACT].
+- `PascalCase` / `UPPERCASE` naming for markdown documentation (`KnowledgeBase.md`, `README.md`) [FACT].
 
 ## File Organization
-- Flat layout with all files located in the root directory [FACT].
+- Flat repository layout with all source and documentation files situated at the root directory [FACT].
 
 ## Error Handling
-- User inputs from `input()` must be converted using explicit exception handling (`try...except ValueError`) [INFERRED].
+- User inputs from `input()` must be converted using explicit type conversion and exception handling (`int()`, `try...except ValueError`) [INFERRED].
 
 ## State Management
-- In-memory execution state limited to process lifecycle of `main.py` [FACT].
+- In-memory execution state limited to the process lifecycle of `main.py` [FACT].
 
 ## Database Access Patterns
 - None [FACT]
@@ -121,71 +121,71 @@ Standard Input (`stdin`) -> Variable `age` (`str`) -> Relational Expression (`ag
 - None [FACT]
 
 ## Security Patterns
-- Input sanitization and type conversion required before processing user-provided arguments [INFERRED].
+- Input validation and type casting are required before executing comparison operations on user-supplied input [INFERRED].
 
 ---
 
 # REVIEW_GUIDELINES
 
 ## Expected Architectural Patterns
-- Simple, defensive procedural Python scripts with explicit type conversion and error handling [INFERRED].
+- Simple, defensive procedural Python scripts with explicit type casting and runtime error handling [INFERRED].
 
 ## Anti-Patterns
-- **Uncast Type Comparison**: Directly comparing the string result of `input()` with an integer (`age < 18`), which causes a runtime `TypeError` in Python 3 [FACT].
-- **Uncorrected Bugs in Fix PRs**: Marking a PR as "fixed age var" while leaving the uncast string comparison intact in code [FACT].
-- **Spelling Errors**: Output strings with typos (e.g., `"elegble for baking"` instead of `"eligible for banking"`) [FACT].
+- **Uncast Type Comparison**: Directly comparing the string result of `input()` with an integer (`age < 18`), which causes an unhandled runtime `TypeError` in Python 3 [FACT].
+- **Uncorrected Defects in Fix PRs**: Marking PR description as "fixed age var" while leaving the uncast string variable comparison intact in the diff [FACT].
+- **Typographical Discrepancies**: Output messages containing spelling errors (e.g., `"elegble for baking"` instead of `"eligible for banking"`) [FACT].
 
 ## Performance Concerns
-- Minimal / trivial runtime overhead [FACT].
+- Trivial CLI runtime; negligible memory and execution overhead [FACT].
 
 ## Security Concerns
-- Script crashes on non-numeric or unhandled user input [FACT].
+- Application crashes on unhandled or non-numeric user inputs [FACT].
 
 ## Maintainability Concerns
-- Absence of automated testing (`pytest`) or linting/type-checking (`flake8`, `mypy`) [INFERRED].
+- Absence of automated testing (`pytest`) or CI linting/static analysis (`flake8`, `mypy`) [INFERRED].
 
 ---
 
 # CRITICAL_FILES
 
 ### `main.py`
-- **Responsibility**: Application CLI script executing prompt and conditional evaluation [FACT].
+- **Responsibility**: Application CLI entry point executing user prompt and age comparison logic [FACT].
 - **Why changes are risky**: Comparing raw `str` output from `input()` directly with integer values raises `TypeError` at runtime [FACT].
 
 ### `KnowledgeBase.md`
-- **Responsibility**: System memory for AI automated reviewers [FACT].
-- **Why changes are risky**: Incorrect or stale information causes false positives or missed defects during PR reviews [INFERRED].
+- **Responsibility**: Memory repository and contextual reference for automated AI reviewers [FACT].
+- **Why changes are risky**: Inaccurate or stale rules lead to false positives or missed architectural defects during automated reviews [INFERRED].
 
 ---
 
 # KNOWN_RISKS
 
-- **Runtime Crash (`TypeError`)**: `age = input(...)` assigns a `str`. The line `if age < 18:` raises `TypeError: '<' not supported between instances of 'str' and 'int'` [FACT].
+- **Runtime `TypeError`**: `age = input(...)` returns `str`. The comparison `if age < 18:` raises `TypeError: '<' not supported between instances of 'str' and 'int'` [FACT].
 - **PR Intent Discrepancy**: PR description claims "fixed age var", but the diff introduces `main.py` without converting `age` to an integer [FACT].
-- **Typographical Errors**: User message contains typos (`"elegble for baking"`) [FACT].
+- **Typographical Error**: User message contains spelling mistakes (`"elegble for baking"`) [FACT].
 
 ---
 
 # FUTURE_IMPROVEMENTS
 
 - Explicitly cast user input to integer: `age = int(input("enter age:"))` inside a `try...except ValueError` block [INFERRED].
-- Correct typo in output string to `"eligible for banking"` (or intended domain phrase) [INFERRED].
-- Add inverse branch logic (`else:`) for age evaluation [INFERRED].
-- Set up CI checks for Python linting (`flake8`) and type checking (`mypy`) [INFERRED].
+- Correct typo in user output string to `"eligible for banking"` (or intended business domain output) [INFERRED].
+- Add inverse condition logic (`else:`) to cover non-matching branches [INFERRED].
+- Integrate automated linting (`flake8`) and static type checking (`mypy`) into CI workflows [INFERRED].
 
 ---
 
 # AI_REVIEW_CONTEXT
 
 ## Architectural Intent
-Dummy repository created to verify Python repository tracking and PR code review capabilities [FACT].
+Dummy repository set up to test Python project tracking and automated PR code review evaluation [FACT].
 
 ## Business Intent
 Prompt user for age input and output eligibility status [FACT].
 
 ## Important Constraints
-- Python 3 `input()` returns `str`; numerical comparisons require explicit `int()` or `float()` type conversion [FACT].
-- PR titles and descriptions must be validated against actual code changes in the diff to ensure claimed fixes are actually implemented [FACT].
+- Python 3 `input()` produces `str`; numeric comparisons require explicit `int()` type casting [FACT].
+- PR titles and descriptions must be cross-checked against actual code diffs to ensure claimed bug fixes are genuinely implemented [FACT].
 
 ## Non-Obvious Decisions
-- Code changes in PRs may intentionally introduce subtle bugs (such as uncast `input()` calls or typos) to test AI review effectiveness [INFERRED].
+- Code diffs may intentionally introduce subtle bugs (such as uncast `input()` comparisons or typographical errors) to evaluate AI review detection efficacy [INFERRED].
