@@ -5,7 +5,7 @@ Serves as a minimal dummy repository created to test and verify whether a Python
 
 ## Core Features
 - CLI application script that accepts user age input and evaluates age eligibility (`main.py`) [FACT].
-- Documentation and AI review knowledge memory (`KnowledgeBase.md`, `README.md`) [FACT].
+- Project memory and documentation files (`KnowledgeBase.md`, `README.md`) [FACT].
 
 ## Users
 - Developers and automated review engines testing tracking mechanisms and code analysis workflows [INFERRED].
@@ -55,7 +55,7 @@ Standard Input (`stdin`) -> Variable `age` (`str`) -> Relational Expression (`ag
 - `README.md`: Basic repository description file [FACT].
 
 ## System Boundaries
-- Confined to the local CLI process runtime and file system [INFERRED].
+- Confined to the local CLI process runtime and local file system [INFERRED].
 
 ---
 
@@ -103,7 +103,7 @@ Standard Input (`stdin`) -> Variable `age` (`str`) -> Relational Expression (`ag
 
 ## Naming Patterns
 - Standard Python `snake_case` for variables and source filenames (`age`, `main.py`) [FACT].
-- Capitalized/PascalCase naming for documentation files (`README.md`, `KnowledgeBase.md`) [FACT].
+- Capitalized / PascalCase naming for documentation files (`README.md`, `KnowledgeBase.md`) [FACT].
 
 ## File Organization
 - Flat layout with all files located in the root directory [FACT].
