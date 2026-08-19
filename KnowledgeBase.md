@@ -1,14 +1,14 @@
 # PROJECT_IDENTITY
 
 ## Purpose
-Serves as a minimal dummy repository created to test and demonstrate tracking and automated AI code review capabilities for Python projects [FACT].
+Serves as a dummy project set to check if a Python project can be tracked and evaluated by automated AI review systems [FACT].
 
 ## Core Features
-- CLI application for accepting user age input and evaluating age eligibility (`main.py`) [FACT].
-- Long-term project memory and documentation (`KnowledgeBase.md`, `README.md`) [FACT].
+- Executable Python script for collecting user age and evaluating eligibility (`main.py`) [FACT].
+- Long-term project memory and documentation repository (`KnowledgeBase.md`, `README.md`) [FACT].
 
 ## Users
-- Developers testing tracking mechanisms and automated AI code review systems [INFERRED].
+- Developers and automated code review systems testing repository tracking capabilities [INFERRED].
 
 ---
 
@@ -37,25 +37,25 @@ Serves as a minimal dummy repository created to test and demonstrate tracking an
 # ARCHITECTURE
 
 ## High Level Design
-Flat single-repository architecture containing executable Python CLI scripts (`main.py`) and markdown documentation/knowledge base files (`KnowledgeBase.md`, `README.md`) [FACT].
+Flat single-repository structure containing a executable Python entry script (`main.py`) alongside project documentation and living knowledge base files (`KnowledgeBase.md`, `README.md`) [FACT].
 
 ## Request Flow
-1. User runs `main.py` directly from the command line [FACT].
-2. System prints `"Hello world"` to standard output [FACT].
+1. User executes `main.py` directly in the command line [FACT].
+2. System displays `"Hello world"` [FACT].
 3. System prompts user with `"enter age:"` via standard input [FACT].
-4. System attempts conditional comparison on the input variable (`age < 18`) [FACT].
-5. System prints result string (`"elegble for baking"`) if condition evaluates to true [FACT].
+4. System attempts conditional comparison on user input variable (`age < 18`) [FACT].
+5. System displays result message (`"elegble for baking"`) if condition evaluates to true [FACT].
 
 ## Data Flow
-User Input (`stdin`) -> Variable `age` (String) -> Conditional Expression (`age < 18`) -> Output String (`stdout`) [FACT].
+User Input (`stdin`) -> String variable (`age`) -> Conditional expression (`age < 18`) -> Output message (`stdout`) [FACT].
 
 ## Important Modules
-- `main.py`: Entry point script handling CLI user interaction and age verification logic [FACT].
-- `KnowledgeBase.md`: Authoritative living context file used by AI code review tools [FACT].
-- `README.md`: Basic project overview documentation [FACT].
+- `main.py`: Command-line entry point script handling user input and conditional eligibility logic [FACT].
+- `KnowledgeBase.md`: System memory and architectural guidelines used by AI reviewer tools [FACT].
+- `README.md`: Basic repository documentation [FACT].
 
 ## System Boundaries
-- Constrained to the local Python runtime execution environment and local file system [INFERRED].
+- Bound to the local Python process execution runtime and local filesystem [INFERRED].
 
 ---
 
@@ -71,8 +71,8 @@ User Input (`stdin`) -> Variable `age` (String) -> Conditional Expression (`age 
 ### Directory Details
 
 #### `.` (Root Directory)
-- **Purpose**: Root container for project execution scripts, documentation, and metadata [FACT].
-- **Responsibilities**: Stores the application CLI entry point (`main.py`) and project knowledge documentation [FACT].
+- **Purpose**: Root container for application source code and documentation [FACT].
+- **Responsibilities**: Stores `main.py`, `KnowledgeBase.md`, and `README.md` [FACT].
 - **Dependencies**: Python 3 standard library [INFERRED].
 
 ---
@@ -82,37 +82,37 @@ User Input (`stdin`) -> Variable `age` (String) -> Conditional Expression (`age 
 ## Entities
 
 ### `User / Applicant`
-- **Purpose**: Subject providing age input to determine eligibility [INFERRED].
-- **Relationships**: Evaluated inside `main.py` [FACT].
+- **Purpose**: Subject providing age input to check eligibility [INFERRED].
+- **Relationships**: Evaluated procedurally within `main.py` [FACT].
 
 ### `Knowledge Base`
-- **Purpose**: Centralized storage of architectural patterns, business rules, and review guidelines for automated reviewers [FACT].
-- **Relationships**: Read by AI review tools to evaluate PR diffs against stated intents [INFERRED].
+- **Purpose**: Living document storing architectural decisions, business rules, and review context for AI systems [FACT].
+- **Relationships**: Consumed by automated code review pipelines [INFERRED].
 
 ---
 
 # BUSINESS_RULES
 
-- **Project Goal**: Maintained as a dummy project to verify Python repository tracking [FACT].
-- **Input Type Conversion**: User inputs from `input()` must be explicitly converted to numeric types before relational operations [INFERRED].
-- **PR Intent Integrity**: PR descriptions and titles must accurately reflect actual code modifications in the diff [INFERRED].
+- **Project Goal**: Maintained as a dummy project to check if a Python project can be tracked [FACT].
+- **Input Type Conversion**: Values retrieved via CLI input (`input()`) must be converted to numeric types before relational comparison operations [INFERRED].
+- **PR Metadata Alignment**: PR title and description must accurately reflect actual modifications introduced in the diff [INFERRED].
 
 ---
 
 # CODING_CONVENTIONS
 
 ## Naming Patterns
-- Standard Python `snake_case` for variables and source files (`age`, `main.py`) [FACT].
-- PascalCase/Capitalized naming for root documentation markdown files (`README.md`, `KnowledgeBase.md`) [FACT].
+- Standard Python `snake_case` for variables and source scripts (`age`, `main.py`) [FACT].
+- PascalCase/Capitalized naming for core documentation files (`KnowledgeBase.md`, `README.md`) [FACT].
 
 ## File Organization
-- Flat, non-nested root directory layout [FACT].
+- Flat layout with all files located in the root directory [FACT].
 
 ## Error Handling
-- CLI input conversion should be protected against invalid non-numeric inputs using explicit type casting and error handling (`try...except ValueError`) [INFERRED].
+- CLI input conversion should be wrapped in exception handling (e.g., `try...except ValueError`) to handle non-numeric user entries [INFERRED].
 
 ## State Management
-- In-memory execution state limited to the process lifecycle of `main.py` [FACT].
+- In-memory execution state tied to the execution lifecycle of `main.py` [FACT].
 
 ## Database Access Patterns
 - None [FACT]
@@ -121,72 +121,71 @@ User Input (`stdin`) -> Variable `age` (String) -> Conditional Expression (`age 
 - None [FACT]
 
 ## Security Patterns
-- Ensure user inputs are sanitized and validated before processing [INFERRED].
+- Ensure user CLI inputs are sanitized and validated prior to evaluation [INFERRED].
 
 ---
 
 # REVIEW_GUIDELINES
 
 ## Expected Architectural Patterns
-- Simple procedural Python script execution with explicit type conversion and validation [INFERRED].
+- Procedural Python script logic with explicit type conversion and error handling [INFERRED].
 
 ## Anti-Patterns
-- **Uncast Type Comparison**: Comparing string return values from `input()` directly with integers (`age < 18`), which triggers a runtime `TypeError` in Python 3 [FACT].
-- **Inverted / Defective Business Logic**: Checking `age < 18` to print eligibility status rather than `age >= 18` [HYPOTHESIS].
-- **Typographical Discrepancies**: Misspellings in user output (e.g., `"elegble for baking"` instead of `"eligible for banking"`) [FACT].
-- **Misleading PR Intent**: PR description stating "fixed age var" while the diff introduces or leaves uncast type bugs intact [FACT].
+- **Uncast Type Comparisons**: Comparing a string return value from `input()` directly against integer literals (`age < 18`), which causes a runtime `TypeError` in Python 3 [FACT].
+- **Misleading PR Descriptions**: Claiming a fix (e.g., "fixed age var") when the underlying bug remains unaddressed in the diff [FACT].
+- **Typographical Errors in User Output**: Misspellings in printed messages (e.g., `"elegble for baking"`) [FACT].
 
 ## Performance Concerns
-- Minimal execution impact [FACT].
+- Minimal execution overhead [FACT].
 
 ## Security Concerns
-- Script crash on unhandled invalid user input [FACT].
+- Script execution crashes on unhandled invalid user input [FACT].
 
 ## Maintainability Concerns
-- Lack of automated testing (`pytest`) and static linting/type checking (`mypy`, `flake8`) [INFERRED].
+- Lack of automated test suites (`pytest`) and static type checkers (`mypy`, `flake8`) [INFERRED].
 
 ---
 
 # CRITICAL_FILES
 
 ### `main.py`
-- **Responsibility**: Application CLI entry point containing prompt and conditional logic [FACT].
-- **Why changes are risky**: Uncast string-to-int operations cause runtime execution crashes (`TypeError`) [FACT].
+- **Responsibility**: Application CLI entry point containing prompt and conditional verification logic [FACT].
+- **Why changes are risky**: Comparing raw string inputs with integers causes runtime crashes (`TypeError`) [FACT].
 
 ### `KnowledgeBase.md`
-- **Responsibility**: System memory for AI reviewers [FACT].
-- **Why changes are risky**: Stale or incorrect entries lead AI reviewers to incorrect assumptions during PR analysis [INFERRED].
+- **Responsibility**: Long-term memory and context provider for AI code review systems [FACT].
+- **Why changes are risky**: Inaccurate knowledge entries lead AI reviewers to incorrect assumptions during PR evaluation [INFERRED].
 
 ---
 
 # KNOWN_RISKS
 
-- **Runtime `TypeError` Bug**: `input()` in `main.py` returns `str`. Evaluating `age < 18` throws `TypeError: '<' not supported between instances of 'str' and 'int'` [FACT].
-- **Typographical Bug**: User output contains typos (`"elegble for baking"`) [FACT].
-- **PR Description Mismatch**: PR title ("Test2") and description ("fixed age var") do not fix the underlying `TypeError` bug in `main.py` [FACT].
+- **Runtime Crash (`TypeError`)**: `age = input("enter age:")` returns `str`. `if age < 18:` raises `TypeError: '<' not supported between instances of 'str' and 'int'` [FACT].
+- **PR Description Mismatch**: PR description ("fixed age var") does not match the diff implementation where `age` remains an uncast string [FACT].
+- **Output Spelling Errors**: Output string contains spelling typos (`"elegble for baking"`) [FACT].
 
 ---
 
 # FUTURE_IMPROVEMENTS
 
-- Explicitly cast user age input: `age = int(input("enter age:"))` inside a `try...except ValueError` block [INFERRED].
-- Fix output spelling to `"eligible for banking"` [INFERRED].
-- Correct conditional check logic (e.g., `if age >= 18:`) and add an `else` branch for non-eligible users [INFERRED].
-- Add CI steps for Python linting (`flake8`) and type checking (`mypy`) [INFERRED].
+- Explicitly cast age input: `age = int(input("enter age:"))` inside a `try...except ValueError` block [INFERRED].
+- Correct output spelling to `"eligible for banking"` (or intended domain wording) [INFERRED].
+- Adjust evaluation logic (e.g., `if age >= 18:`) and add an `else` clause for non-eligible users [INFERRED].
+- Add linting (`flake8`) and static type checking (`mypy`) via CI [INFERRED].
 
 ---
 
 # AI_REVIEW_CONTEXT
 
 ## Architectural Intent
-Simple dummy Python project to validate repository tracking and automated code review workflows [FACT].
+Dummy repository created specifically to test tracking and automated code review of Python projects [FACT].
 
 ## Business Intent
-Prompt user for age and determine eligibility for services [FACT].
+Prompt user for age input and check eligibility criteria [FACT].
 
 ## Important Constraints
-- Python 3 `input()` returns a string; comparison operations with integers require explicit numeric conversion (`int()`) [FACT].
-- PR metadata must be checked against the diff to ensure claimed fixes actually address the code bugs [FACT].
+- `input()` returns a string in Python 3; integer comparisons require explicit `int()` conversion [FACT].
+- Claims in PR metadata (titles/descriptions) must be verified against actual code diff changes [INFERRED].
 
 ## Non-Obvious Decisions
-- Historical markdown-only repo structure was expanded to include Python execution scripts (`main.py`) to test code-level PR analysis capabilities [FACT].
+- Project transitioned from documentation-only markdown tracking to executable Python code (`main.py`) to test code diff analysis [FACT].
