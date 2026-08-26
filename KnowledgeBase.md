@@ -1,14 +1,14 @@
 # PROJECT_IDENTITY
 
 ## Purpose
-Serves as a minimal dummy project created to test and verify whether a Python project can be tracked and evaluated by automated AI code review tools [FACT].
+Serves as a dummy project created to test and verify whether a Python repository can be tracked and evaluated by automated AI code review systems [FACT].
 
 ## Core Features
 - Interactive CLI script (`main.py`) that prompts for user age input and evaluates voting eligibility [FACT].
 - Documentation and knowledge memory system (`KnowledgeBase.md`, `README.md`) [FACT].
 
 ## Users
-- Developers and automated code review / testing systems interacting with repository changes and static code analysis workflows [INFERRED].
+- Developers and automated code review / tracking systems testing Python project tracking capabilities [INFERRED].
 
 ---
 
@@ -46,11 +46,11 @@ Flat single-repository architecture containing an executable Python CLI script (
 4. Application outputs voting eligibility status (`"you are legeble to vote in india"`) to `stdout` [FACT].
 
 ## Data Flow
-Standard Input (`stdin`) -> Variable `age` -> Comparison Expression -> Standard Output (`stdout`) [FACT].
+Standard Input (`stdin`) -> Variable `age` -> Conditional Expression -> Standard Output (`stdout`) [FACT].
 
 ## Important Modules
 - `main.py`: Executable Python CLI script handling interactive user prompting and logic execution [FACT].
-- `KnowledgeBase.md`: Authoritative knowledge base file providing architectural intent and domain rules for AI review tools [FACT].
+- `KnowledgeBase.md`: Living project knowledge base providing architectural intent and domain rules for AI review tools [FACT].
 - `README.md`: Basic repository entry point and metadata documentation [FACT].
 
 ## System Boundaries
@@ -93,7 +93,7 @@ Standard Input (`stdin`) -> Variable `age` -> Comparison Expression -> Standard 
 # BUSINESS_RULES
 
 - **Tracking Objective**: Repository serves as a dummy codebase specifically to test Python project tracking capabilities [FACT].
-- **Voting Eligibility Check**: User age input is checked against a numeric threshold to determine voting eligibility [FACT].
+- **Voting Eligibility Threshold**: User age input is checked against a numeric boundary (`10`) to determine voting eligibility [FACT].
 - **Input Type Safety**: Interactive string inputs intended for numerical comparison must be cast to numeric types (e.g., `int()`) prior to evaluation [INFERRED].
 
 ---
@@ -161,7 +161,7 @@ Standard Input (`stdin`) -> Variable `age` -> Comparison Expression -> Standard 
 # KNOWN_RISKS
 
 - **Python Syntax Error**: Using `{}` instead of indentation in `if (age > 10){ ... }` causes `SyntaxError: invalid syntax` [FACT].
-- **Runtime `TypeError`**: `input()` produces a `str`. Comparing `age > 10` causes `TypeError: '>' not supported between instances of 'str' and 'int'` [FACT].
+- **Runtime TypeError**: `input()` produces a `str`. Comparing `age > 10` causes `TypeError: '>' not supported between instances of 'str' and 'int'` [FACT].
 - **Typographical Discrepancy**: Output string contains typographical errors (`"legeble"` instead of `"eligible"`) [FACT].
 - **Lack of CI / Linting**: Absence of static analysis or syntax checks allows syntax errors to reach main branches [INFERRED].
 
