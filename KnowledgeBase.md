@@ -1,15 +1,16 @@
 # PROJECT_IDENTITY
 
 ## Purpose
-- [FACT] Serves as a dummy testing project set up specifically to evaluate if a Python project can be tracked (Source: Developer-authored Project Goal; Confidence: 100%).
-- [INFERRED] Acts as a minimal demonstration repository for validating file modification tracking and automated code review tools.
+- [FACT] Serves as a dummy project set up specifically to check if a Python project can be tracked (Source: Developer-authored Project Goal; Confidence: 100%).
+- [INFERRED] Acts as a minimal demonstration repository for testing automated PR review systems, diff tracking, and documentation changes.
 
 ## Core Features
-- [FACT] Markdown project documentation (`README.md`).
-- [FACT] Sequential text additions (`dummy`, `test1`, `tets2`, `tets3`, `test4`).
+- [FACT] Basic project documentation via Markdown (`README.md`).
+- [FACT] Repository knowledge base memory (`KnowledgeBase.md`).
+- [FACT] Sequential text tracking entries (`dummy`, `test1`, `tets2`, `tets3`, `test4`).
 
 ## Users
-- [INFERRED] Developers, automated review tools, and repository tracking integrations.
+- [INFERRED] Developers and automated AI review systems interacting with repository changes.
 
 ---
 
@@ -32,24 +33,25 @@
 - Git version control [FACT].
 
 ## External Services
-- CodeRabbit AI / automated PR review integrations [FACT].
+- CodeRabbit AI / automated code review systems [FACT].
 
 ---
 
 # ARCHITECTURE
 
 ## High Level Design
-- [FACT] Currently a flat, static repository structure containing plain text/markdown documentation files.
-- [HYPOTHESIS] Intended to evolve into or track a Python-based project structure.
+- [FACT] Currently a flat, static repository layout containing markdown documentation and configuration text files.
+- [HYPOTHESIS] Intended to evolve into or track a Python-based application structure.
 
 ## Request Flow
 - N/A (Static repository content) [INFERRED].
 
 ## Data Flow
-- [FACT] Line-by-line sequential additions appended to root documentation (`README.md`) via Git Pull Requests.
+- [FACT] Sequential text additions appended to root documentation (`README.md`) via Git pull requests.
 
 ## Important Modules
-- **Documentation Module**: Root markdown file (`README.md`) tracking baseline additions.
+- **Documentation Module**: Root markdown file (`README.md`) tracking baseline string additions.
+- **Knowledge Base Module**: Repository memory file (`KnowledgeBase.md`) capturing system rules, domain models, and confidence levels.
 
 ## System Boundaries
 - Local file system, Git repository version control, and external automated PR review tools.
@@ -60,14 +62,15 @@
 
 ```
 .
+├── KnowledgeBase.md
 └── README.md
 ```
 
 ### Directory Details
 
 #### `.` (Root Directory)
-- **Purpose**: Root container for project documentation and future Python project code.
-- **Responsibilities**: Houses project metadata and tracking files.
+- **Purpose**: Root container for project configuration, tracking files, and documentation.
+- **Responsibilities**: Stores core project text files, system memory, and future Python code files.
 - **Dependencies**: None.
 
 ---
@@ -77,26 +80,30 @@
 ## Entities
 
 ### `README Document`
-- **Purpose**: Holds project metadata and sequential tracking/testing text entries (`dummy`, `test1`, `tets2`, `tets3`, `test4`).
+- **Purpose**: Holds baseline metadata and sequential tracking/testing text entries (`dummy`, `test1`, `tets2`, `tets3`, `test4`).
 - **Relationships**: None [INFERRED].
+
+### `KnowledgeBase Document`
+- **Purpose**: Maintains living project memory, architectural intent, confidence levels, and guidelines for AI review systems.
+- **Relationships**: References `README Document` and general repository context [INFERRED].
 
 ---
 
 # BUSINESS_RULES
 
-- [FACT] Primary Goal: Repository must serve to check/validate Python project tracking capabilities (Confidence: 100%).
+- [FACT] Primary Goal: Repository must serve to check and validate Python project tracking capabilities (Confidence: 100%).
 - [INFERRED] Document updates append sequential test indicators (`test1`, `tets2`, `tets3`, `test4`).
-- [INFERRED] Pull Request titles and descriptions must match the target file and exact content altered in the diff.
+- [INFERRED] Pull Request metadata (title and description) must accurately match the targeted file path and exact diff modifications.
 
 ---
 
 # CODING_CONVENTIONS
 
 ## Naming Patterns
-- [FACT] Standard uppercase naming for main markdown documentation (`README.md`).
+- [FACT] Standard uppercase naming for main root markdown documentation files (`README.md`, `KnowledgeBase.md`).
 
 ## File Organization
-- [FACT] Flat root-level file layout.
+- [FACT] Flat repository layout at the root level.
 
 ## Error Handling
 - N/A [INFERRED]
@@ -111,28 +118,28 @@
 - N/A [INFERRED]
 
 ## Security Patterns
-- Plaintext repository files; secret credentials or environment tokens must not be committed [INFERRED].
+- Plaintext repository storage; sensitive environment credentials or secret tokens must not be committed [INFERRED].
 
 ---
 
 # REVIEW_GUIDELINES
 
 ## Expected Architectural Patterns
-- Clean plain-text additions aligned with existing file layout and formatting.
-- Readiness for introducing Python source files as specified in the Project Goal.
+- Clean plain-text additions following pre-existing file structure.
+- Preparedness for introducing Python source files as specified in the Project Goal.
 
 ## Anti-Patterns
-- **Metadata Mismatch**: Discrepancies between PR titles/descriptions and actual diffs (e.g., describing `README3` when modifying `README.md`).
-- **Typographical Drift**: Accidental spelling mistakes introduced in diffs that contradict PR intent (e.g., introducing `tets3` when PR intent states `test3`).
+- **Metadata Mismatch**: Discrepancies between PR titles/descriptions and actual diffs (e.g., title referencing `README3` when modifying `README.md`).
+- **Typographical Drift**: Accidental spelling mistakes introduced in diffs that contradict stated PR intent (e.g., introducing `tets3` when PR intent specifies `test3`).
 
 ## Performance Concerns
 - Minimal / None [INFERRED].
 
 ## Security Concerns
-- Ensure sensitive operational data or secrets are not committed to documentation or code files.
+- Ensure secret credentials or sensitive environment configuration are excluded from public files.
 
 ## Maintainability Concerns
-- Ensure consistency between PR metadata (title/description) and actual code/text diffs.
+- Maintain consistency between PR intent descriptions, targeted files, and actual diff modifications.
 
 ---
 
@@ -140,35 +147,42 @@
 
 ### `README.md`
 - **Responsibility**: Primary documentation file and tracking benchmark in the repository [FACT].
-- **Why changes are risky**: Serves as the sole tracked file; updates are prone to typographical inconsistencies or metadata mismatch [INFERRED].
+- **Why changes are risky**: Acts as the primary content file; updates are prone to typographical inconsistencies or metadata mismatch [INFERRED].
+
+### `KnowledgeBase.md`
+- **Responsibility**: Houses long-term project knowledge, developer goals, and AI review guidance [FACT].
+- **Why changes are risky**: Modifications directly alter how automated review tools evaluate subsequent pull requests [INFERRED].
 
 ---
 
 # KNOWN_RISKS
 
-- **Implementation Discrepancy**: [FACT] The developer goal explicitly states this is a project to check Python tracking, but no `.py` files currently exist in the repository tree.
-- **Lack of Automated CI Validation**: [INFERRED] No markdown linter or spellchecking workflow is defined, leading to potential silent typographical errors (e.g., `tets2`, `tets3`).
+- **Implementation Discrepancy**: [FACT] The developer goal explicitly states this project is set to check Python tracking, but no `.py` source files currently exist in the repository tree.
+- **Metadata Misalignment Risk**: [INFERRED] PR titles or descriptions may contradict actual diff modifications.
+- **Lack of Automated CI Validation**: [INFERRED] Absence of automated linting or spellchecking tools increases the risk of unflagged typographical errors (e.g., `tets2`, `tets3`).
 
 ---
 
 # FUTURE_IMPROVEMENTS
 
-- Add Python source files/modules to align current code reality with the primary Project Goal [INFERRED].
-- Add automated linting/spellchecking CI checks to catch typos in documentation [INFERRED].
+- Add Python source files/modules to align implementation reality with the primary Project Goal [INFERRED].
+- Add automated markdown linting (e.g., `markdownlint`) and spellchecking to CI workflows [INFERRED].
+- Implement PR validation checks to verify alignment between PR descriptions and diff changes [INFERRED].
 
 ---
 
 # AI_REVIEW_CONTEXT
 
 ## Architectural Intent
-A lightweight dummy repository intended to verify and validate Python project tracking and automated code review tools.
+A minimal dummy repository intended to verify and validate Python project tracking capabilities and automated PR review tools.
 
 ## Business Intent
-Evaluate automated PR review systems on minimal changes and text/code additions.
+Evaluate automated PR review systems against minimal changes and sequential text additions.
 
 ## Important Constraints
-- Highest priority source of truth is the Developer Project Goal: verifying tracking for Python projects (Confidence: 100%).
-- Strictly verify that PR metadata (title and description) matches the actual file path and line diffs.
+- The highest priority source of truth is the Developer Project Goal: verifying tracking for Python projects (Confidence: 100%).
+- The absence of Python files is an observed implementation gap relative to the Project Goal, not an immediate code bug.
+- Verify that PR metadata (title and description) strictly matches the modified file paths and diff content.
 
 ## Non-Obvious Decisions
-- Python code is not yet present in the file tree, but tracking Python projects is the developer-stated Project Goal. Do not flag the missing Python code as a bug, but recognise the discrepancy between intended goal and current implementation state.
+- The repository relies on manual or AI review because no automated linting scripts are configured.
