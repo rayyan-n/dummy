@@ -20,8 +20,8 @@
 - None [INFERRED]
 
 ## Backend
-- Python [FACT: Intended target technology per explicit Project Goal].
-- None currently implemented in repository code [FACT].
+- Python [FACT: Intended target technology per explicit Project Goal; Confidence: 100%].
+- None currently implemented in repository source code [FACT].
 
 ## Database
 - None [INFERRED]
@@ -40,21 +40,21 @@
 # ARCHITECTURE
 
 ## High Level Design
-- [FACT] Currently a flat, static repository layout containing markdown documentation and configuration text files.
+- [FACT] Static, flat repository layout containing markdown documentation and tracking text files.
 - [HYPOTHESIS] Intended to evolve into or track a Python-based application structure.
 
 ## Request Flow
 - N/A (Static repository content) [INFERRED].
 
 ## Data Flow
-- [FACT] Sequential text additions appended to root documentation (`README.md`) via Git pull requests.
+- [FACT] Sequential text additions appended to root tracking files (`README.md`, `KnowledgeBase.md`) via Git pull requests.
 
 ## Important Modules
 - **Documentation Module**: Root markdown file (`README.md`) tracking baseline string additions.
 - **Knowledge Base Module**: Repository memory file (`KnowledgeBase.md`) capturing system rules, domain models, and confidence levels.
 
 ## System Boundaries
-- Local file system, Git repository version control, and external automated PR review tools.
+- Local file system, Git repository version control boundaries, and external automated PR review tools.
 
 ---
 
@@ -69,8 +69,8 @@
 ### Directory Details
 
 #### `.` (Root Directory)
-- **Purpose**: Root container for project configuration, tracking files, and documentation.
-- **Responsibilities**: Stores core project text files, system memory, and future Python code files.
+- **Purpose**: Main repository container for project configuration, tracking files, and documentation.
+- **Responsibilities**: Stores core project text files, system memory, and future Python source code.
 - **Dependencies**: None.
 
 ---
@@ -81,10 +81,10 @@
 
 ### `README Document`
 - **Purpose**: Holds baseline metadata and sequential tracking/testing text entries (`dummy`, `test1`, `tets2`, `tets3`, `test4`).
-- **Relationships**: None [INFERRED].
+- **Relationships**: Referenced by `KnowledgeBase Document` [INFERRED].
 
 ### `KnowledgeBase Document`
-- **Purpose**: Maintains living project memory, architectural intent, confidence levels, and guidelines for AI review systems.
+- **Purpose**: Maintains living project memory, architectural intent, developer goals, confidence levels, and guidelines for AI review systems.
 - **Relationships**: References `README Document` and general repository context [INFERRED].
 
 ---
@@ -129,14 +129,14 @@
 - Preparedness for introducing Python source files as specified in the Project Goal.
 
 ## Anti-Patterns
-- **Metadata Mismatch**: Discrepancies between PR titles/descriptions and actual diffs (e.g., title referencing `README3` when modifying `README.md`).
+- **Metadata Mismatch**: Discrepancies between PR titles/descriptions and actual diffs (e.g., PR title referencing `README3` when modifying `README.md`).
 - **Typographical Drift**: Accidental spelling mistakes introduced in diffs that contradict stated PR intent (e.g., introducing `tets3` when PR intent specifies `test3`).
 
 ## Performance Concerns
 - Minimal / None [INFERRED].
 
 ## Security Concerns
-- Ensure secret credentials or sensitive environment configuration are excluded from public files.
+- Ensure secret credentials or sensitive environment configuration are excluded from public documentation files.
 
 ## Maintainability Concerns
 - Maintain consistency between PR intent descriptions, targeted files, and actual diff modifications.
@@ -167,7 +167,7 @@
 
 - Add Python source files/modules to align implementation reality with the primary Project Goal [INFERRED].
 - Add automated markdown linting (e.g., `markdownlint`) and spellchecking to CI workflows [INFERRED].
-- Implement PR validation checks to verify alignment between PR descriptions and diff changes [INFERRED].
+- Enforce PR validation checks to verify alignment between PR descriptions and diff changes [INFERRED].
 
 ---
 
@@ -180,7 +180,7 @@ A minimal dummy repository intended to verify and validate Python project tracki
 Evaluate automated PR review systems against minimal changes and sequential text additions.
 
 ## Important Constraints
-- The highest priority source of truth is the Developer Project Goal: verifying tracking for Python projects (Confidence: 100%).
+- Highest priority source of truth: Developer Project Goal to verify Python project tracking (Confidence: 100%).
 - The absence of Python files is an observed implementation gap relative to the Project Goal, not an immediate code bug.
 - Verify that PR metadata (title and description) strictly matches the modified file paths and diff content.
 
