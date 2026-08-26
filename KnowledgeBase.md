@@ -4,11 +4,11 @@
 Serves as a minimal dummy project created to test and verify whether a Python project can be tracked and evaluated by automated AI code review tools [FACT].
 
 ## Core Features
-- Interactive CLI script (`main.py`) that prompts for user age input and performs eligibility checks [FACT].
+- Interactive CLI script (`main.py`) that prompts for user age input and checks voting eligibility criteria [FACT].
 - Documentation and knowledge memory system (`KnowledgeBase.md`, `README.md`) [FACT].
 
 ## Users
-- Developers and automated code review systems testing repository tracking and static code analysis workflows [INFERRED].
+- Developers and automated testing systems interacting with repository changes and static code analysis workflows [INFERRED].
 
 ---
 
@@ -41,13 +41,12 @@ Flat single-repository architecture containing an executable Python CLI script (
 
 ## Request Flow
 1. User executes `main.py` via command line [FACT].
-2. Application prints `"Hello world"` to `stdout` [FACT].
-3. Application prompts user with `"enter age:"` via `stdin` [FACT].
-4. Application attempts conditional evaluation (`if age < 18:`) using the uncast string variable [FACT].
-5. Application prints `"elegble for baking"` to `stdout` if evaluation succeeds [FACT].
+2. Application prompts user with `"enter your age to verify ? "` via `stdin` [FACT].
+3. Application attempts conditional evaluation (`if (age > 10)`) [FACT].
+4. Application outputs voting eligibility status (`"you are legeble to vote in india"`) to `stdout` [FACT].
 
 ## Data Flow
-Standard Input (`stdin`) -> Variable `age` (`str`) -> Comparison Expression (`age < 18`) -> Standard Output (`stdout`) [FACT].
+Standard Input (`stdin`) -> Variable `age` -> Comparison Expression -> Standard Output (`stdout`) [FACT].
 
 ## Important Modules
 - `main.py`: Executable Python CLI script handling interactive user prompting and logic execution [FACT].
@@ -55,7 +54,7 @@ Standard Input (`stdin`) -> Variable `age` (`str`) -> Comparison Expression (`ag
 - `README.md`: Basic repository entry point and metadata documentation [FACT].
 
 ## System Boundaries
-- Confined to the local CLI runtime process and local file system [INFERRED].
+- Local file system and CLI runtime execution environment [INFERRED].
 
 ---
 
@@ -82,7 +81,7 @@ Standard Input (`stdin`) -> Variable `age` (`str`) -> Comparison Expression (`ag
 ## Entities
 
 ### `User / Applicant`
-- **Purpose**: Represents the interactive caller providing age input to evaluate criteria eligibility [INFERRED].
+- **Purpose**: Represents the interactive caller providing age input to evaluate voting eligibility criteria [INFERRED].
 - **Relationships**: Interacts directly with `main.py` standard input/output streams [FACT].
 
 ### `Knowledge Base`
@@ -94,8 +93,8 @@ Standard Input (`stdin`) -> Variable `age` (`str`) -> Comparison Expression (`ag
 # BUSINESS_RULES
 
 - **Tracking Objective**: Repository serves as a dummy codebase specifically to test Python project tracking capabilities [FACT].
+- **Voting Eligibility Check**: User age input is checked against a numeric threshold to determine voting eligibility [FACT].
 - **Input Type Safety**: Interactive string inputs intended for numerical comparison must be cast to numeric types (e.g., `int()`) prior to evaluation [INFERRED].
-- **PR Description Accuracy**: PR descriptions (e.g., "fixed age var") must accurately reflect actual functional code changes in the PR diff [INFERRED].
 
 ---
 
@@ -128,18 +127,19 @@ Standard Input (`stdin`) -> Variable `age` (`str`) -> Comparison Expression (`ag
 # REVIEW_GUIDELINES
 
 ## Expected Architectural Patterns
-- Procedural Python scripts with explicit type conversion and runtime exception handling [INFERRED].
+- Standard Python syntax using colons and block indentation (`if age > 10:`) [FACT].
+- Procedural Python scripts with explicit type conversion (`int(age)`) and runtime exception handling [INFERRED].
 
 ## Anti-Patterns
-- **Uncast Type Comparison**: Direct comparison of string results from `input()` with integers (`age < 18`), raising an unhandled `TypeError` in Python 3 [FACT].
-- **Uncorrected Defects in Fix PRs**: Marking a PR description as "fixed age var" while leaving the uncast string variable comparison unfixed in the diff [FACT].
-- **Typographical Errors**: Inaccurate spelling in standard output strings (e.g., `"elegble for baking"`) [FACT].
+- **C-Style Syntax in Python**: Using curly braces `{}` for `if` statements, which raises a `SyntaxError` in Python [FACT].
+- **Uncast Type Comparison**: Direct comparison of string results from `input()` with integers (`age > 10`), raising an unhandled `TypeError` in Python 3 [FACT].
+- **Typographical Errors**: Inaccurate spelling in standard output strings (e.g., `"legeble"` instead of `"eligible"`) [FACT].
 
 ## Performance Concerns
 - Negligible CLI execution and memory overhead [FACT].
 
 ## Security Concerns
-- Process termination risks caused by unhandled runtime exceptions on invalid user input [FACT].
+- Process termination risks caused by syntax or type errors on execution [FACT].
 
 ## Maintainability Concerns
 - Lack of unit test coverage (`pytest`) and static analysis / linting tools (`flake8`, `mypy`) [INFERRED].
@@ -150,7 +150,7 @@ Standard Input (`stdin`) -> Variable `age` (`str`) -> Comparison Expression (`ag
 
 ### `main.py`
 - **Responsibility**: Application CLI entry point executing user prompt and age comparison logic [FACT].
-- **Why changes are risky**: Comparing raw `str` output from `input()` directly with integer values raises `TypeError` at runtime [FACT].
+- **Why changes are risky**: Invalid Python syntax (curly braces) causes `SyntaxError`; comparing raw `str` output from `input()` directly with integer values raises `TypeError` at runtime [FACT].
 
 ### `KnowledgeBase.md`
 - **Responsibility**: Long-term memory repository and contextual reference for automated AI reviewers [FACT].
@@ -160,17 +160,18 @@ Standard Input (`stdin`) -> Variable `age` (`str`) -> Comparison Expression (`ag
 
 # KNOWN_RISKS
 
-- **Runtime `TypeError`**: `input()` produces a `str`. Comparing `age < 18` causes `TypeError: '<' not supported between instances of 'str' and 'int'` [FACT].
-- **PR Intent Discrepancy**: PR description claims "fixed age var", but the diff introduces `main.py` without converting `age` to an integer [FACT].
-- **Typographical Discrepancy**: Output string contains typographical errors (`"elegble for baking"`) [FACT].
+- **Python Syntax Error**: Using `{}` instead of indentation in `if (age > 10){ ... }` causes `SyntaxError: invalid syntax` [FACT].
+- **Runtime `TypeError`**: `input()` produces a `str`. Comparing `age > 10` causes `TypeError: '>' not supported between instances of 'str' and 'int'` [FACT].
+- **Typographical Discrepancy**: Output string contains typographical errors (`"legeble"` instead of `"eligible"`) [FACT].
+- **Lack of CI / Linting**: Absence of static analysis or syntax checks allows syntax errors to reach main branches [INFERRED].
 
 ---
 
 # FUTURE_IMPROVEMENTS
 
-- Explicitly cast user input to integer: `age = int(input("enter age:"))` wrapped in a `try...except ValueError` block [INFERRED].
-- Correct typo in standard output text to `"eligible for banking"` (or intended domain phrase) [INFERRED].
-- Add `else` condition logic for alternative branch execution [INFERRED].
+- Fix syntax error in `main.py` by removing `{}` and adhering to Python indentation and colon block formatting [INFERRED].
+- Explicitly cast user input to integer: `age = int(input(...))` wrapped in a `try...except ValueError` block [INFERRED].
+- Correct typographical error in standard output (`"legeble"` -> `"eligible"`) [INFERRED].
 - Integrate automated linting (`flake8`) and static type checking (`mypy`) into repository workflow [INFERRED].
 
 ---
@@ -181,11 +182,11 @@ Standard Input (`stdin`) -> Variable `age` (`str`) -> Comparison Expression (`ag
 Dummy repository set up to test Python project tracking and automated PR code review evaluation [FACT].
 
 ## Business Intent
-Prompt user for age input and output eligibility status [FACT].
+Prompt user for age input and output voting eligibility status [FACT].
 
 ## Important Constraints
+- Python does not use C-style `{}` for block scope; control structures require colons and standard indentation [FACT].
 - Python 3 `input()` produces `str`; numeric comparisons require explicit `int()` type casting [FACT].
-- PR titles and descriptions must be cross-checked against actual code diffs to ensure claimed fixes match implementation changes [FACT].
 
 ## Non-Obvious Decisions
-- Code changes may intentionally introduce subtle bugs (such as uncast `input()` comparisons or typos) to evaluate whether AI review systems correctly detect discrepancies between PR descriptions and code diffs [INFERRED].
+- Code changes in PRs may intentionally introduce syntax errors, uncast variables, or typos to test whether AI review systems correctly identify Python syntax violations and runtime type errors [INFERRED].
