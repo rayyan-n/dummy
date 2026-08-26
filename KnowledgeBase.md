@@ -4,11 +4,11 @@
 Serves as a minimal dummy project created to test and verify whether a Python project can be tracked and evaluated by automated AI code review tools [FACT].
 
 ## Core Features
-- Interactive CLI script (`main.py`) that prompts for user age input and checks voting eligibility criteria [FACT].
+- Interactive CLI script (`main.py`) that prompts for user age input and evaluates voting eligibility [FACT].
 - Documentation and knowledge memory system (`KnowledgeBase.md`, `README.md`) [FACT].
 
 ## Users
-- Developers and automated testing systems interacting with repository changes and static code analysis workflows [INFERRED].
+- Developers and automated code review / testing systems interacting with repository changes and static code analysis workflows [INFERRED].
 
 ---
 
