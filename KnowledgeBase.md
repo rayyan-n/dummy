@@ -1,14 +1,16 @@
 # PROJECT_IDENTITY
 
 ## Purpose
-Serves as a minimal dummy/testing repository used for demonstration, testing, or basic documentation experiments [INFERRED].
+- [FACT] Serves as a dummy/testing project set up specifically to check if a Python project can be tracked (Source: Developer-authored Project Goal; Confidence: 100%).
+- [INFERRED] Acts as a minimal demonstration repository for testing automated AI pull request review systems, change tracking, and repository knowledge base memory evolution.
 
 ## Core Features
-- Basic project documentation via Markdown (`README.md`).
-- Sequential text entries (`test1`, `tets2`, `tets3`).
+- [FACT] Basic project documentation and sequential text tracking via Markdown (`README.md`).
+- [FACT] Repository knowledge base memory and AI review context management (`KnowledgeBase.md`).
+- [FACT] Sequential text tracking entries (`dummy`, `test1`, `tets2`, `tets3`, `test4`).
 
 ## Users
-- Developers and automated testing systems interacting with repository changes [INFERRED].
+- [INFERRED] Software developers, maintainers, and automated AI code review systems interacting with repository changes.
 
 ---
 
@@ -18,7 +20,8 @@ Serves as a minimal dummy/testing repository used for demonstration, testing, or
 - None [INFERRED]
 
 ## Backend
-- None [INFERRED]
+- Python [FACT: Intended target technology per explicit Project Goal; Confidence: 100%].
+- None currently implemented in repository source code [FACT].
 
 ## Database
 - None [INFERRED]
@@ -27,29 +30,31 @@ Serves as a minimal dummy/testing repository used for demonstration, testing, or
 - None [INFERRED]
 
 ## Infrastructure
-- Git version control.
+- Git version control [FACT].
 
 ## External Services
-- None [INFERRED]
+- CodeRabbit AI / automated code review systems [FACT].
 
 ---
 
 # ARCHITECTURE
 
 ## High Level Design
-Static, file-based single-repository architecture containing markdown documentation files.
+- [FACT] Static, flat repository layout containing markdown documentation and tracking text files.
+- [HYPOTHESIS] Intended to evolve into or track a Python-based application structure.
 
 ## Request Flow
-N/A (Static repository content) [INFERRED].
+- N/A (Static repository content) [INFERRED].
 
 ## Data Flow
-N/A (Static repository content) [INFERRED].
+- [FACT] Sequential text additions appended to root tracking files (`README.md`, `KnowledgeBase.md`) via Git pull requests.
 
 ## Important Modules
-- **Documentation Module**: Represents root markdown files (`README.md`).
+- **Documentation Module (`README.md`)**: Root markdown file tracking baseline string additions.
+- **Knowledge Base Module (`KnowledgeBase.md`)**: Repository memory file capturing system rules, domain models, confidence levels, and guidelines for AI review systems.
 
 ## System Boundaries
-- Local file system and Git repository boundaries.
+- Local file system, Git version control boundaries, and external automated PR review tools.
 
 ---
 
@@ -57,14 +62,15 @@ N/A (Static repository content) [INFERRED].
 
 ```
 .
+├── KnowledgeBase.md
 └── README.md
 ```
 
 ### Directory Details
 
 #### `.` (Root Directory)
-- **Purpose**: Main repository container for project configuration and documentation.
-- **Responsibilities**: Stores core project text files and settings.
+- **Purpose**: Main repository container for project configuration, tracking files, and documentation.
+- **Responsibilities**: Stores core project text files, system memory, and future Python source code.
 - **Dependencies**: None.
 
 ---
@@ -74,25 +80,30 @@ N/A (Static repository content) [INFERRED].
 ## Entities
 
 ### `README Document`
-- **Purpose**: Holds project metadata, status, and test strings (`dummy`, `test1`, `tets2`, `tets3`).
-- **Relationships**: None [INFERRED].
+- **Purpose**: Holds baseline metadata and sequential tracking/testing text entries (`dummy`, `test1`, `tets2`, `tets3`, `test4`).
+- **Relationships**: Referenced by `KnowledgeBase Document` [INFERRED].
+
+### `KnowledgeBase Document`
+- **Purpose**: Maintains living project memory, architectural intent, developer goals, confidence levels, and guidelines for AI review systems.
+- **Relationships**: References `README Document` and general repository context [INFERRED].
 
 ---
 
 # BUSINESS_RULES
 
-- Document updates append sequential test or status indicators (e.g., `test1`, `tets2`, `tets3`) [INFERRED].
-- PR metadata (title and description) must accurately match the target file and content appended in the diff [INFERRED].
+- [FACT] Primary Goal: Repository must serve to check and validate Python project tracking capabilities (Confidence: 100%).
+- [INFERRED] Document updates append sequential test indicators (`test1`, `tets2`, `tets3`, `test4`).
+- [INFERRED] Pull Request metadata (title and description) must accurately match targeted file paths and exact diff modifications.
 
 ---
 
 # CODING_CONVENTIONS
 
 ## Naming Patterns
-- Standard upper-case markdown naming for main documentation (`README.md`).
+- [FACT] Standard uppercase naming for main root markdown documentation files (`README.md`, `KnowledgeBase.md`).
 
 ## File Organization
-- Flat repository layout with root-level documentation files.
+- [FACT] Flat repository layout at the root level.
 
 ## Error Handling
 - N/A [INFERRED]
@@ -107,63 +118,71 @@ N/A (Static repository content) [INFERRED].
 - N/A [INFERRED]
 
 ## Security Patterns
-- Plaintext repository data; ensure sensitive keys or confidential operational info are excluded [INFERRED].
+- [INFERRED] Plaintext repository storage; sensitive environment credentials or secret tokens must not be committed.
 
 ---
 
 # REVIEW_GUIDELINES
 
 ## Expected Architectural Patterns
-- Clean, plain text additions following pre-existing file formatting.
+- Clean plain-text additions following pre-existing file structure.
+- Preparedness for introducing Python source files as specified in the Project Goal.
 
 ## Anti-Patterns
-- **Mismatched PR Metadata**: Diff targets a different file (`README.md`) than described in PR title (`README3`).
-- **Typographical Discrepancies**: Inconsistency between description (`test3`) and line addition (`tets3`).
+- **Metadata Mismatch**: Discrepancies between PR titles/descriptions and actual diffs (e.g., PR title referencing `README3` when modifying `README.md`).
+- **Typographical Drift**: Accidental spelling mistakes introduced in diffs that contradict stated PR intent (e.g., introducing `tets3` when PR intent specifies `test3`).
 
 ## Performance Concerns
-- Minimal / None.
+- Minimal / None [INFERRED].
 
 ## Security Concerns
-- Prevent committing secrets or sensitive environment configuration to public documentation files.
+- Ensure secret credentials or sensitive environment configurations are excluded from public documentation files.
 
 ## Maintainability Concerns
-- Check spelling consistency across documentation entries.
+- Maintain consistency between PR intent descriptions, targeted files, and actual diff modifications.
 
 ---
 
 # CRITICAL_FILES
 
 ### `README.md`
-- **Responsibility**: Primary entry point and documentation source for the repository.
-- **Why changes are risky**: Changes affect project visibility and risk introducing typographical errors or unaligned change metadata.
+- **Responsibility**: Primary documentation file and tracking benchmark in the repository [FACT].
+- **Why changes are risky**: Acts as the primary content file; updates are prone to typographical inconsistencies or metadata mismatch [INFERRED].
+
+### `KnowledgeBase.md`
+- **Responsibility**: Houses long-term project knowledge, developer goals, and AI review guidance [FACT].
+- **Why changes are risky**: Modifications directly alter how automated review tools evaluate subsequent pull requests [INFERRED].
 
 ---
 
 # KNOWN_RISKS
 
-- **Metadata Misalignment Risk**: PR titles/descriptions may contradict actual code changes (e.g., PR title references `README3` and description says `test3`, while diff modifies `README.md` with `tets3`) [INFERRED].
-- **Lack of Tooling**: No automated markdown linting or spellchecking detected, increasing the likelihood of unchecked typos [INFERRED].
+- **Implementation Discrepancy**: [FACT] The developer goal explicitly states this project is set to check Python tracking, but no `.py` source files currently exist in the repository tree.
+- **Metadata Misalignment Risk**: [INFERRED] PR titles or descriptions may contradict actual diff modifications.
+- **Lack of Automated CI Validation**: [INFERRED] Absence of automated linting or spellchecking tools increases the risk of unflagged typographical errors (e.g., `tets2`, `tets3`).
 
 ---
 
 # FUTURE_IMPROVEMENTS
 
-- Implement a Markdown linter (e.g., `markdownlint`) and spellchecker as a CI step [INFERRED].
-- Enforce PR validation checks to align PR descriptions with diff content [INFERRED].
+- Add Python source files/modules to align implementation reality with the primary Project Goal [INFERRED].
+- Add automated markdown linting (e.g., `markdownlint`) and spellchecking to CI workflows [INFERRED].
+- Enforce PR validation checks to verify alignment between PR descriptions and diff changes [INFERRED].
 
 ---
 
 # AI_REVIEW_CONTEXT
 
 ## Architectural Intent
-Simple static content repository used to evaluate version control changes and file updates.
+A minimal dummy repository intended to verify and validate Python project tracking capabilities and automated PR review tools.
 
 ## Business Intent
-Maintain simple text/test entries in documentation files.
+Evaluate automated PR review systems against minimal changes and sequential text additions.
 
 ## Important Constraints
-- Pay close attention to discrepancies between PR titles/descriptions and actual diffs.
-- Flag typographical issues (e.g., `tets3` vs `test3`) when the description indicates a specific intended spelling.
+- Highest priority source of truth: Developer Project Goal to verify Python project tracking (Confidence: 100%).
+- The absence of Python files is an observed implementation gap relative to the Project Goal, not an immediate code bug.
+- Verify that PR metadata (title and description) strictly matches the modified file paths and diff content.
 
 ## Non-Obvious Decisions
-- The repository relies entirely on manual review for documentation accuracy as no automated validation scripts are defined.
+- The repository relies on manual or AI review because no automated linting scripts are configured.
